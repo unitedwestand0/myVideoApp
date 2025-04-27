@@ -10,7 +10,7 @@ import {
   fetchVideos,
 } from "../controller/aws/awsFileController";
 
-//downlaod rout
+//downlaod route
 router.get("/fetch-videos", fetchVideos);
 router.get("/fetch-single/video/:id", fetchSingleVideo);
 router.get("/download/file/:id", downloadVideo);
