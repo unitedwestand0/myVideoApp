@@ -5,9 +5,10 @@ connectDB();
 import dotenv from 'dotenv';
 dotenv.config();
 import router from "./route/index";
-
+import passportJwtStrategy from './config/passportJwtStrategy';
 
 // middleware
+app.use(passportJwtStrategy.initialize());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
