@@ -1,6 +1,8 @@
 import {Request, RequestHandler} from "express";
 import User from "../../model/userSchema";
 import { sendRes } from "../../utilities/sendResponse";
+import crypto from 'crypto';
+import {hashPassword} from "../../utilities/passwordHelper";
 
 interface RegisterReq extends Request{
     body: {
@@ -26,14 +28,17 @@ export const signUpUser: RequestHandler = async(req: RegisterReq, res) => {
         if(existingUser) {
             return sendRes(res,400,false,"Account already in use with this email");
         } 
-           
-            const newUser = await User.create({
+           const hashedPassword = await hashPassword(password);
+
+            await User.create({
                 email,
-                password,
+                password: hashedPassword,
+                token: crypto.randomBytes(16).toString('hex'),
+
             });
             
             // send successful user created response
-            if(!existingUser && newUser){
+            if(!existingUser){
             return sendRes(res,200,true, "User Created Successfully");
             }
 
