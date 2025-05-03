@@ -68,9 +68,13 @@ button:focus-visible {
 }
  */
 
-@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities; 
+/* tailwindcss import */
+/* @import 'tailwindcss/base';
+@import 'tailwind/components';
+@import 'tailwind/utilities';  */
+@import 'tailwindcss';
+
+
+/* custom styles below  */
 
